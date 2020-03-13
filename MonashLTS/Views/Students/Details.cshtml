@@ -1,0 +1,67 @@
+﻿@model MonashLTS.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AlternateOffering)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlternateOffering)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentIndication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentIndication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChineseNatOrRez)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChineseNatOrRez)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssessedLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssessedLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnshoreOffshore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnshoreOffshore)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

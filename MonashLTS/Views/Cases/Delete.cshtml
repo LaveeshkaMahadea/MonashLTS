@@ -1,0 +1,65 @@
+﻿@model MonashLTS.Models.Case
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Case</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseManager.FirstNameCM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseManager.FirstNameCM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.AlternateOffering)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.AlternateOffering)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeachingAssistant.FirstNameTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeachingAssistant.FirstNameTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.UnitCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit.UnitCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

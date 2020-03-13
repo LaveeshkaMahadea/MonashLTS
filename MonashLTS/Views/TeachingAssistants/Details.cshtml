@@ -1,0 +1,35 @@
+﻿@model MonashLTS.Models.TeachingAssistant
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TeachingAssistant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstNameTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstNameTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastNameTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastNameTA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

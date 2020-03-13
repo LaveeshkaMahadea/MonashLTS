@@ -1,0 +1,73 @@
+﻿@model MonashLTS.Models.Student
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AlternateOffering)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlternateOffering)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentIndication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentIndication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChineseNatOrRez)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChineseNatOrRez)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssessedLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssessedLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnshoreOffshore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnshoreOffshore)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

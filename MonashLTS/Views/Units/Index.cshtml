@@ -1,0 +1,100 @@
+﻿@model IEnumerable<MonashLTS.Models.Unit>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.AlternateOffering)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeachingAssistant.FirstNameTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deliverable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitTeachingLeadPrimary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitOwningOrgPrimary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitMode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Eftsl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitOfferingYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitOfferingSem)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.AlternateOffering)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeachingAssistant.FirstNameTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deliverable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitTeachingLeadPrimary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitOwningOrgPrimary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitMode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Eftsl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitOfferingYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitOfferingSem)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

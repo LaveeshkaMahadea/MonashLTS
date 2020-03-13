@@ -1,0 +1,59 @@
+﻿@model MonashLTS.Models.Case
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Case</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseManager.FirstNameCM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseManager.FirstNameCM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.AlternateOffering)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.AlternateOffering)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeachingAssistant.FirstNameTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeachingAssistant.FirstNameTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.UnitCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit.UnitCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
