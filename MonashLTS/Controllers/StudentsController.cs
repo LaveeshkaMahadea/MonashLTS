@@ -38,6 +38,8 @@ namespace MonashLTS.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+
+            ViewBag.Unit_id = new SelectList(db.Units, "id", "UnitCode");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace MonashLTS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,AlternateOffering,StudentIndication,Alias,ChineseNatOrRez,AssessedLocation,OnshoreOffshore")] Student student)
+        public ActionResult Create([Bind(Include = "id,AlternateOffering,StudentIndication,Alias,ChineseNatOrRez,AssessedLocation,OnshoreOffshore,Units")] Student student)
         {
             if (ModelState.IsValid)
             {

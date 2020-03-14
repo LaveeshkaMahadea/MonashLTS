@@ -13,12 +13,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Student.AlternateOffering)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TeachingAssistant.FirstNameTA)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.UnitCode)
         </th>
         <th>
@@ -53,12 +47,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.AlternateOffering)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeachingAssistant.FirstNameTA)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.UnitCode)
         </td>

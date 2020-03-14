@@ -39,47 +39,16 @@ namespace MonashLTS.Controllers
         // GET: Cases/Create
         public ActionResult Create()
         {
-            List<string>[] names = getThatList();
-
-            ViewBag.CaseManager_id = new SelectList(names[0]);
-            ViewBag.TeachingAssistant_id = new SelectList(names[1]);
-            ViewBag.Student_id = new SelectList(names[2]);
+            
+            ViewBag.CaseManager_id = new SelectList(db.CaseManagers, "id", "FullNameCM");
+            ViewBag.TeachingAssistant_id = new SelectList(db.TeachingAssistants, "id", "FullNameTA");
+            ViewBag.Student_id = new SelectList(db.Students, "id", "id");
             ViewBag.Unit_id = new SelectList(db.Units, "id", "UnitCode");
             return View();
         }
 
 
-        public List<string>[] getThatList()
-        {
-            List<CaseManager> CMs = db.CaseManagers.ToList();
-            List<string> CMNames = new List<string>();
-
-            foreach (CaseManager i in CMs)
-            {
-                CMNames.Add(i.FullNameCM);
-            }
-
-
-            List<TeachingAssistant> TAs = db.TeachingAssistants.ToList();
-            List<string> TANames = new List<string>();
-
-            foreach (TeachingAssistant i in TAs)
-            {
-                TANames.Add(i.FullNameTA);
-            }
-
-            List<Student> Stus = db.Students.ToList();
-            List<string> StuNames = new List<string>();
-
-            foreach (Student i in Stus)
-            {
-                StuNames.Add(i.Alias);
-            }
-
-            List<string>[] s1 = { CMNames, TANames, StuNames };
-
-            return s1;
-        }
+        
         // POST: Cases/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -87,7 +56,7 @@ namespace MonashLTS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,CaseId,CaseManager_id,Student_id,TeachingAssistant_id,Unit_id")] Case @case)
         {
-
+            Case c = @case;
 
             if (ModelState.IsValid)
             {
@@ -96,12 +65,11 @@ namespace MonashLTS.Controllers
                 return RedirectToAction("Index");
             }
 
-            List<string>[] names = getThatList();
-
-            ViewBag.CaseManager_id = new SelectList(names[0]);
-            ViewBag.TeachingAssistant_id = new SelectList(names[1]);
-            ViewBag.Student_id = new SelectList(names[2]);
-            ViewBag.Unit_id = new SelectList(db.Units, "id", "UnitCode");
+            
+            ViewBag.CaseManager_id = new SelectList(db.CaseManagers, "id", "FullNameCM", @case.CaseManager_id);
+            ViewBag.TeachingAssistant_id = new SelectList(db.TeachingAssistants,"id","FullNameTA",@case.TeachingAssistant_id);
+            ViewBag.Student_id = new SelectList(db.Students, "id", "id", @case.Student_id);
+            ViewBag.Unit_id = new SelectList(db.Units, "id", "UnitCode",@case.Unit_id);
 
 
 
@@ -124,10 +92,48 @@ namespace MonashLTS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CaseManager_id = new SelectList(db.CaseManagers, "id", "FullNameCM", @case.CaseManager.FullNameCM);
-            ViewBag.Student_id = new SelectList(db.Students, "id", "Alias", @case.Student.Alias);
-            ViewBag.TeachingAssistant_id = new SelectList(db.TeachingAssistants, "id", "FullNameTA", @case.TeachingAssistant.FullNameTA);
-            ViewBag.Unit_id = new SelectList(db.Units, "id", "UnitCode", @case.Unit.UnitCode);
+            
+            if (@case.Student.Alias == null)
+            {
+                ViewBag.Student_id = new SelectList(db.Students, "id", "id");
+            }
+            else
+            {
+                ViewBag.Student_id = new SelectList(db.Students, "id", "id", @case.Student.Alias);
+            }
+
+
+            if (@case.CaseManager.FullNameCM == null)
+            {
+                ViewBag.CaseManager_id = new SelectList(db.CaseManagers, "id", "FullNameCM");
+            }
+            else
+            {
+                ViewBag.CaseManager_id = new SelectList(db.CaseManagers, "id", "FullNameCM", @case.CaseManager.FullNameCM);
+            }
+
+            if (@case.Unit == null)
+            {
+                ViewBag.Unit_id = new SelectList(db.Units, "id", "UnitCode");
+            }
+            else {
+                ViewBag.Unit_id = new SelectList(db.Units, "id", "UnitCode", @case.Unit.UnitCode);
+            }
+
+
+            if (@case.TeachingAssistant.FullNameTA == null)
+            {
+                ViewBag.TeachingAssistant_id = new SelectList(db.TeachingAssistants, "id", "FullNameTA");
+            }
+            else
+            {
+                ViewBag.TeachingAssistant_id = new SelectList(db.TeachingAssistants, "id", "FullNameTA", @case.TeachingAssistant.FullNameTA);
+            }
+
+
+            
+
+
             return View(@case);
         }
 
@@ -145,7 +151,7 @@ namespace MonashLTS.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CaseManager_id = new SelectList(db.CaseManagers, "id", "FullNameCM", @case.CaseManager.FullNameCM);
-            ViewBag.Student_id = new SelectList(db.Students, "id", "Alias", @case.Student.Alias);
+            ViewBag.Student_id = new SelectList(db.Students, "id", "id", @case.Student.Alias);
             ViewBag.TeachingAssistant_id = new SelectList(db.TeachingAssistants, "id", "FullNameTA", @case.TeachingAssistant.FullNameTA);
             ViewBag.Unit_id = new SelectList(db.Units, "id", "UnitCode", @case.Unit.UnitCode);
             return View(@case);
