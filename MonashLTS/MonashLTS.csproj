@@ -173,7 +173,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CaseManagersController.cs" />
     <Compile Include="Controllers\CasesController.cs" />
-    <Compile Include="Controllers\Comments1Controller.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

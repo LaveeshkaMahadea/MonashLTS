@@ -40,7 +40,7 @@ namespace MonashLTS.Controllers
         public ActionResult Create()
         {
             ViewBag.CurrentCase_id = new SelectList(db.Cases, "id", "CaseId");
-            ViewBag.AssignedCM_id = new SelectList(db.CaseManagers, "id", "FirstNameCM");
+            ViewBag.AssignedCM_id = new SelectList(db.CaseManagers, "id", "FullNameCM");
             return View();
         }
 
@@ -51,6 +51,19 @@ namespace MonashLTS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,CreatedDate,CommentText,Action,ClosedDate,AssignedCM_id,CurrentCase_id")] Comment comment)
         {
+            comment.CaseManager = db.CaseManagers.Find(comment.AssignedCM_id);
+            comment.Case = db.Cases.Find(comment.CurrentCase_id);
+
+            comment.CreatedDate = DateTime.UtcNow;
+
+            if (comment.Action == "Closed")
+            {
+                comment.ClosedDate = DateTime.UtcNow;
+            }
+
+            ModelState.Clear();
+            TryValidateModel(comment);
+
             if (ModelState.IsValid)
             {
                 db.Comments.Add(comment);
@@ -59,7 +72,7 @@ namespace MonashLTS.Controllers
             }
 
             ViewBag.CurrentCase_id = new SelectList(db.Cases, "id", "CaseId", comment.CurrentCase_id);
-            ViewBag.AssignedCM_id = new SelectList(db.CaseManagers, "id", "FirstNameCM", comment.AssignedCM_id);
+            ViewBag.AssignedCM_id = new SelectList(db.CaseManagers, "id", "FullNameCM", comment.AssignedCM_id);
             return View(comment);
         }
 
@@ -87,6 +100,11 @@ namespace MonashLTS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,CreatedDate,CommentText,Action,ClosedDate,AssignedCM_id,CurrentCase_id")] Comment comment)
         {
+            if (comment.Action == "Closed")
+            {
+                comment.ClosedDate = DateTime.Now;
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(comment).State = EntityState.Modified;
